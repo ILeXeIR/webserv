@@ -36,7 +36,7 @@ The objective is to understand how an HTTP server works at a low level:
 
 - **C++**
 - **Python** for CGI scripts
-- **epoll()** / non-blocking sockets
+- **epoll()** for scalable I/O multiplexing
 - POSIX system calls, Unix-style process and file handling
 
 ---
@@ -61,9 +61,19 @@ Project built by a team of two students at Codam (42 Network): me and [@ilovecjj
 This project uses POSIX system calls (fork, execve, epoll, socket, etc.) and must be run on a **Unix-like operating system**:
 
 - **Linux** (recommended)
-- **macOS** (fully supported)
+- **Windows via WSL2** (Windows Subsystem for Linux)
 
-**Windows is not supported**, unless using WSL2 (Windows Subsystem for Linux).
+**macOS is not supported** due to lack of epoll.
+
+---
+
+## ⚙️ Configuration File
+
+The server uses a customizable configuration file inspired by nginx configuration files. 
+
+The structure and logic are similar to nginx.conf, but the format is custom and specific to this project. 
+
+Look at the example in the configuration file **default.conf**.
 
 ---
 
@@ -73,11 +83,26 @@ This project uses POSIX system calls (fork, execve, epoll, socket, etc.) and mus
 
 ```make```
 
-**2.** Run server with your config file:
+**2.** Run server with your configuration file:
 
 ```./webserv default.conf```
 
-**3.** Open (servername and port from your config file):
+**3.** Open (hostname and port from your configuration file):
 
 http://localhost:8081
 
+---
+
+## 📝 CGI Example
+
+Python CGI scripts are placed inside:
+
+```data/cgi```
+
+If you run webserv with default.conf file, you can test them by opening:
+
+```http://localhost:8081/cgi/<filename>```
+
+For example:
+
+http://localhost:8081/cgi/file_exchange_cgi.py
