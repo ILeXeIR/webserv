@@ -79,15 +79,24 @@ Look at the example in the configuration file **default.conf**.
 
 ## 🔧 How to Run
 
-**1.** Compile:
+**1.** Before running the server, install the required packages.
+
+Ubuntu / WSL2
+
+```
+sudo apt update
+sudo apt install -y build-essential python3 python3-pip git
+```
+
+**2.** Compile:
 
 ```make```
 
-**2.** Run server with your configuration file:
+**3.** Run server with your configuration file:
 
 ```./webserv default.conf```
 
-**3.** Open (hostname and port from your configuration file):
+**4.** Open (hostname and port from your configuration file):
 
 http://localhost:8081
 
